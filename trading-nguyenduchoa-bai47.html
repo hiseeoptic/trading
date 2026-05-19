@@ -1,0 +1,2206 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buổi 47 — 20 Quy Luật Vàng · trading.nguyenduchoa.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500;700&family=Inter+Tight:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0b;
+  --bg-elev: #131316;
+  --bg-card: #18181c;
+  --bg-sidebar: #0d0d10;
+  --ink: #f5f1e8;
+  --ink-dim: #a8a39a;
+  --ink-faint: #6b6862;
+  --bull: #4ade80;
+  --bear: #ef4444;
+  --gold: #d4a85a;
+  --gold-bright: #f4c97b;
+  --line: #2a2a30;
+  --line-bright: #3d3d45;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --sidebar-w: 320px;
+  --topbar-h: 64px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--gold); color: var(--bg); }
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ===== TOP BAR ===== */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--topbar-h);
+  background: rgba(10, 10, 11, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  gap: 2rem;
+}
+
+.brand {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+.brand .accent { color: var(--gold); }
+.brand .domain {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  font-style: normal;
+  margin-left: 0.6rem;
+  text-transform: lowercase;
+}
+
+.topbar-meta {
+  margin-left: auto;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+
+.topbar-meta .pill {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--line-bright);
+  border-radius: 999px;
+  color: var(--gold);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--line-bright);
+  color: var(--ink);
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  position: fixed;
+  top: var(--topbar-h);
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--line);
+  overflow-y: auto;
+  padding: 2rem 0;
+  z-index: 50;
+}
+
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-track { background: var(--bg-sidebar); }
+.sidebar::-webkit-scrollbar-thumb { background: var(--line-bright); border-radius: 3px; }
+
+.sidebar-section {
+  padding: 0 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.sidebar-label::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.sidebar-search {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 0.7rem 0.9rem;
+  font-family: var(--mono);
+  font-size: 12px;
+  border-radius: 2px;
+  transition: border 0.2s;
+}
+
+.sidebar-search:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.sidebar-search::placeholder { color: var(--ink-faint); }
+
+/* ===== NAV TREE - LEVEL 1: CHAPTER ===== */
+.nav-chapter {
+  border-bottom: 1px solid var(--line);
+  padding: 1.2rem 1.5rem;
+}
+
+.nav-chapter:last-child { border-bottom: none; }
+
+.chapter-head {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.4rem 0;
+}
+
+.chapter-head .num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--gold);
+  font-weight: 300;
+  min-width: 1.6rem;
+}
+
+.chapter-head .name {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  flex: 1;
+  line-height: 1.2;
+}
+
+.chapter-head .arrow {
+  font-family: var(--mono);
+  color: var(--ink-faint);
+  font-size: 0.7rem;
+  transition: transform 0.3s;
+}
+
+.nav-chapter.open .chapter-head .arrow { transform: rotate(90deg); color: var(--gold); }
+
+/* ===== NAV TREE - LEVEL 2: TOPIC ===== */
+.chapter-body {
+  display: none;
+  margin-top: 0.5rem;
+  padding-left: 0.6rem;
+  border-left: 1px solid var(--line);
+}
+
+.nav-chapter.open .chapter-body { display: block; }
+
+.nav-topic {
+  margin: 0.3rem 0;
+}
+
+.topic-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.4rem 0.5rem;
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  transition: all 0.2s;
+}
+
+.topic-head:hover { color: var(--gold); background: rgba(212, 168, 90, 0.05); }
+
+.topic-head .arrow {
+  font-size: 0.65rem;
+  transition: transform 0.3s;
+  color: var(--ink-faint);
+}
+
+.nav-topic.open .topic-head .arrow { transform: rotate(90deg); color: var(--gold); }
+.nav-topic.open .topic-head { color: var(--gold); }
+
+/* ===== NAV TREE - LEVEL 3: LESSON ===== */
+.topic-body {
+  display: none;
+  margin-top: 0.3rem;
+  padding-left: 1rem;
+}
+
+.nav-topic.open .topic-body { display: block; }
+
+.nav-lesson {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  text-decoration: none;
+  color: var(--ink-dim);
+  font-size: 0.85rem;
+  border-radius: 2px;
+  margin: 0.15rem 0;
+  transition: all 0.2s;
+  border-left: 2px solid transparent;
+  line-height: 1.4;
+}
+
+.nav-lesson:hover {
+  color: var(--ink);
+  background: var(--bg-card);
+  border-left-color: var(--gold);
+}
+
+.nav-lesson.active {
+  color: var(--gold);
+  background: var(--bg-card);
+  border-left-color: var(--gold);
+}
+
+.nav-lesson.upcoming { color: var(--ink-faint); }
+.nav-lesson.upcoming:hover { color: var(--ink-dim); cursor: default; }
+
+.nav-lesson .ep {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-faint);
+  min-width: 2.2rem;
+  margin-top: 0.15rem;
+}
+
+.nav-lesson.active .ep, .nav-lesson:hover .ep { color: var(--gold); }
+
+.nav-lesson .title { flex: 1; }
+
+.nav-lesson .tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  padding: 0.1rem 0.35rem;
+  border-radius: 2px;
+  margin-left: 0.3rem;
+  align-self: flex-start;
+  margin-top: 0.2rem;
+}
+
+.tag.new { background: var(--gold); color: var(--bg); }
+.tag.soon { background: var(--line); color: var(--ink-faint); }
+
+/* ===== MAIN CONTENT ===== */
+.main {
+  margin-left: var(--sidebar-w);
+  padding-top: var(--topbar-h);
+  min-height: 100vh;
+}
+
+.content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 4rem;
+}
+
+/* ===== BREADCRUMB ===== */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 3rem;
+}
+
+.breadcrumb a { color: var(--ink-faint); text-decoration: none; transition: color 0.2s; }
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb .sep { color: var(--line-bright); }
+.breadcrumb .current { color: var(--gold); }
+
+/* ===== LESSON HEADER ===== */
+.lesson-header {
+  margin-bottom: 4rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.lesson-meta {
+  display: flex;
+  gap: 2rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 1.5rem;
+}
+
+.lesson-meta .gold { color: var(--gold); }
+
+.lesson-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+.lesson-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+
+.lesson-summary {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--ink-dim);
+  max-width: 65ch;
+  line-height: 1.5;
+  margin-top: 1.5rem;
+}
+
+.lesson-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.stat-item .label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.4rem;
+}
+
+.stat-item .value {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.stat-item .value.gold { color: var(--gold); }
+.stat-item .value.bull { color: var(--bull); }
+
+/* ===== RULE CARD ===== */
+.rule {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.rule-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3rem;
+  margin-bottom: 2.5rem;
+  align-items: start;
+}
+
+.rule-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 6rem;
+  font-weight: 200;
+  color: var(--gold);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+}
+
+.rule-num .label {
+  display: block;
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: var(--ink-faint);
+  margin-bottom: 0.8rem;
+}
+
+.rule-title {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 2.8vw, 2.3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+  margin-bottom: 1.2rem;
+}
+
+.rule-title em { font-style: italic; color: var(--gold); }
+
+.rule-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-dim);
+  padding-left: 1.2rem;
+  border-left: 2px solid var(--gold);
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.rule-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.rule-body p {
+  color: var(--ink-dim);
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.rule-body p strong { color: var(--ink); }
+
+.rule-body .highlight {
+  color: var(--gold-bright);
+  font-family: var(--serif);
+  font-style: italic;
+}
+
+/* ===== CALLOUT ===== */
+.callout {
+  background: var(--bg-card);
+  border-left: 3px solid var(--gold);
+  padding: 1.3rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.callout .label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.callout p {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink);
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+/* ===== FRAMEWORK BOX ===== */
+.framework {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.framework .title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+}
+
+.framework ul { list-style: none; }
+
+.framework li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.9rem;
+  color: var(--ink-dim);
+}
+
+.framework li:last-child { border: none; }
+
+.framework li .marker {
+  font-family: var(--mono);
+  color: var(--gold);
+  font-size: 0.85rem;
+}
+
+.framework li .pct {
+  font-family: var(--mono);
+  color: var(--ink);
+  font-size: 0.85rem;
+}
+
+/* ===== CHART ===== */
+.chart-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1.3rem;
+}
+
+.chart-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 1rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.chart-label .gold { color: var(--gold); }
+.chart-wrap svg { width: 100%; height: auto; display: block; }
+
+.chart-caption {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-faint);
+  margin-top: 0.6rem;
+  line-height: 1.5;
+}
+
+/* ===== TOC IN PAGE ===== */
+.toc-inpage {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  padding: 2rem;
+  margin: 2rem 0 4rem;
+  border-radius: 4px;
+}
+
+.toc-inpage .head {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 2rem;
+}
+
+.toc-item-mini {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
+  text-decoration: none;
+  color: var(--ink-dim);
+  font-size: 0.88rem;
+  border-bottom: 1px solid var(--line);
+  transition: all 0.2s;
+}
+
+.toc-item-mini:hover { color: var(--gold); padding-left: 0.4rem; }
+
+.toc-item-mini .n {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-faint);
+}
+
+.toc-item-mini:hover .n { color: var(--gold); }
+
+/* ===== CHAPTER DIVIDER ===== */
+.chapter-divider {
+  padding: 5rem 0 2rem;
+  margin: 3rem 0 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.chapter-divider .num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.chapter-divider h2 {
+  font-family: var(--serif);
+  font-weight: 200;
+  font-style: italic;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+}
+
+.chapter-divider h2 .accent { color: var(--gold); }
+
+.chapter-divider .intro {
+  font-family: var(--serif);
+  color: var(--ink-dim);
+  max-width: 60ch;
+  margin-top: 1.5rem;
+  line-height: 1.6;
+}
+
+/* ===== NEXT LESSON ===== */
+.next-lesson {
+  margin-top: 5rem;
+  padding: 3rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.next-lesson .info .label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+}
+
+.next-lesson .info .title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.next-lesson .arrow {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  color: var(--gold);
+  font-style: italic;
+}
+
+/* ===== FOOTER ===== */
+footer.site-footer {
+  margin-left: var(--sidebar-w);
+  padding: 4rem 4rem 2rem;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+footer .quote {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-dim);
+  max-width: 55ch;
+  margin: 0 auto 1rem;
+  line-height: 1.5;
+}
+
+footer .author {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 2rem;
+}
+
+footer .credit {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-bar {
+  position: fixed;
+  top: var(--topbar-h);
+  left: var(--sidebar-w);
+  right: 0;
+  height: 2px;
+  background: var(--line);
+  z-index: 99;
+}
+.progress-bar .fill { height: 100%; background: var(--gold); width: 0; transition: width 0.1s; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .menu-toggle { display: block; }
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .main, footer.site-footer { margin-left: 0; }
+  .progress-bar { left: 0; }
+  .content { padding: 2rem 2rem; }
+  .rule-head { grid-template-columns: 1fr; gap: 1rem; }
+  .rule-body { grid-template-columns: 1fr; gap: 2rem; }
+  .rule-num { font-size: 4rem; }
+  .lesson-stats { grid-template-columns: repeat(2, 1fr); }
+  .toc-grid { grid-template-columns: 1fr; }
+  .next-lesson { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 600px) {
+  .topbar { padding: 0 1rem; gap: 1rem; }
+  .topbar-meta { display: none; }
+  .brand { font-size: 1.05rem; }
+  .brand .domain { display: none; }
+  .content { padding: 1.5rem 1rem; }
+}
+
+.pulse { animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <button class="menu-toggle" id="menuToggle">☰ MENU</button>
+  <div class="brand">
+    <span>Nguyễn Đức </span><span class="accent">Hòa</span>
+    <span class="domain">/ trading.nguyenduchoa.com</span>
+  </div>
+  <div class="topbar-meta">
+    <span>BUỔI · 47 / 47</span>
+    <span class="pill">★ ĐANG XEM</span>
+  </div>
+</header>
+
+<div class="progress-bar"><div class="fill" id="progressFill"></div></div>
+
+<!-- ============ SIDEBAR ============ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-label">Tìm Kiếm</div>
+    <input type="text" class="sidebar-search" placeholder="Tìm buổi học, chủ đề..." id="searchInput">
+  </div>
+
+  <!-- CHAPTER 1: TƯ DUY NỀN TẢNG -->
+  <div class="nav-chapter open">
+    <div class="chapter-head">
+      <span class="num">I</span>
+      <span class="name">Tư duy nền tảng</span>
+      <span class="arrow">▸</span>
+    </div>
+    <div class="chapter-body">
+
+      <div class="nav-topic open">
+        <div class="topic-head">
+          <span class="arrow">▸</span>
+          <span>Quy luật thị trường</span>
+        </div>
+        <div class="topic-body">
+          <a href="#lesson-47" class="nav-lesson active">
+            <span class="ep">B.47</span>
+            <span class="title">20 quy luật vàng của trader</span>
+            <span class="tag new">NEW</span>
+          </a>
+          <a href="#" class="nav-lesson upcoming">
+            <span class="ep">B.48</span>
+            <span class="title">Cấu trúc thị trường theo chu kỳ</span>
+            <span class="tag soon">SOON</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-topic">
+        <div class="topic-head">
+          <span class="arrow">▸</span>
+          <span>Tư duy đám đông</span>
+        </div>
+        <div class="topic-body">
+          <a href="#" class="nav-lesson upcoming">
+            <span class="ep">B.49</span>
+            <span class="title">Tâm lý đám đông trong uptrend</span>
+            <span class="tag soon">SOON</span>
+          </a>
+          <a href="#" class="nav-lesson upcoming">
+            <span class="ep">B.50</span>
+            <span class="title">Bẫy fomo &amp; FUD</span>
+            <span class="tag soon">SOON</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CHAPTER 2: PHÂN TÍCH KỸ THUẬT -->
+  <div class="nav-chapter">
+    <div class="chapter-head">
+      <span class="num">II</span>
+      <span class="name">Phân tích kỹ thuật</span>
+      <span class="arrow">▸</span>
+    </div>
+    <div class="chapter-body">
+
+      <div class="nav-topic">
+        <div class="topic-head">
+          <span class="arrow">▸</span>
+          <span>Sóng &amp; xu hướng</span>
+        </div>
+        <div class="topic-body">
+          <a href="#" class="nav-lesson upcoming">
+            <span class="ep">B.30</span>
+            <span class="title">Sóng Elliott cơ bản</span>
+            <span class="tag soon">SOON</span>
+          </a>
+          <a href="#" class="nav-lesson upcoming">
+            <span class="ep">B.31</span>
+            <span class="title">Phương pháp A-A'-B-B'</span>
+            <span class="tag soon">SOON</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-topic">
+        <div class="topic-head">
+          <span class="arrow">▸</span>
+          <span>Đa khung thời gian</span>
+        </div>
+        <div class="topic-body">
+          <a href="#" class="nav-lesson upcoming">
+            <span class="ep">B.35</span>
+            <span class="title">Đồng thuận khung lớn–khung nhỏ</span>
+            <span class="tag soon">SOON</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-topic">
+        <div class="topic-head">
+          <span class="arrow">▸</span>
+          <span>Dòng tiền &amp; volume</span>
+        </div>
+        <div class="topic-body">
+          <a href="#" class="nav-lesson upcoming">
+            <span class="ep">B.40</span>
+            <span class="title">Đọc dấu chân cá mập</span>
+            <span class="tag soon">SOON</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CHAPTER 3: TÂM LÝ & KỶ LUẬT -->
+  <div class="nav-chapter">
+    <div class="chapter-head">
+      <span class="num">III</span>
+      <span class="name">Tâm lý &amp; kỷ luật</span>
+      <span class="arrow">▸</span>
+    </div>
+    <div class="chapter-body">
+
+      <div class="nav-topic">
+        <div class="topic-head">
+          <span class="arrow">▸</span>
+          <span>Trading psychology</span>
+        </div>
+        <div class="topic-body">
+          <a href="#" class="nav-lesson upcoming">
+            <span class="ep">B.42</span>
+            <span class="title">Trading in the Zone</span>
+            <span class="tag soon">SOON</span>
+          </a>
+          <a href="#" class="nav-lesson upcoming">
+            <span class="ep">B.43</span>
+            <span class="title">Cảm xúc &amp; quyết định</span>
+            <span class="tag soon">SOON</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-topic">
+        <div class="topic-head">
+          <span class="arrow">▸</span>
+          <span>Kỷ luật giao dịch</span>
+        </div>
+        <div class="topic-body">
+          <a href="#" class="nav-lesson upcoming">
+            <span class="ep">B.45</span>
+            <span class="title">Checklist trước khi vào lệnh</span>
+            <span class="tag soon">SOON</span>
+          </a>
+          <a href="#" class="nav-lesson upcoming">
+            <span class="ep">B.46</span>
+            <span class="title">Mục tiêu &amp; cảm hứng</span>
+            <span class="tag soon">SOON</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CHAPTER 4: QUẢN LÝ VỐN -->
+  <div class="nav-chapter">
+    <div class="chapter-head">
+      <span class="num">IV</span>
+      <span class="name">Quản lý vốn &amp; rủi ro</span>
+      <span class="arrow">▸</span>
+    </div>
+    <div class="chapter-body">
+
+      <div class="nav-topic">
+        <div class="topic-head">
+          <span class="arrow">▸</span>
+          <span>Phân bổ danh mục</span>
+        </div>
+        <div class="topic-body">
+          <a href="#" class="nav-lesson upcoming">
+            <span class="ep">B.20</span>
+            <span class="title">Mô hình 4-3-3</span>
+            <span class="tag soon">SOON</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-topic">
+        <div class="topic-head">
+          <span class="arrow">▸</span>
+          <span>Risk management</span>
+        </div>
+        <div class="topic-body">
+          <a href="#" class="nav-lesson upcoming">
+            <span class="ep">B.25</span>
+            <span class="title">Quy tắc 1% &amp; R:R</span>
+            <span class="tag soon">SOON</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CHAPTER 5: THỰC HÀNH -->
+  <div class="nav-chapter">
+    <div class="chapter-head">
+      <span class="num">V</span>
+      <span class="name">Thực hành &amp; case study</span>
+      <span class="arrow">▸</span>
+    </div>
+    <div class="chapter-body">
+
+      <div class="nav-topic">
+        <div class="topic-head">
+          <span class="arrow">▸</span>
+          <span>Backtest</span>
+        </div>
+        <div class="topic-body">
+          <a href="#" class="nav-lesson upcoming">
+            <span class="ep">—</span>
+            <span class="title">Hướng dẫn back test đồ thị</span>
+            <span class="tag soon">SOON</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-topic">
+        <div class="topic-head">
+          <span class="arrow">▸</span>
+          <span>Case study thị trường</span>
+        </div>
+        <div class="topic-body">
+          <a href="#" class="nav-lesson upcoming">
+            <span class="ep">—</span>
+            <span class="title">BTC 2020–2021 · Anatomy of a bull run</span>
+            <span class="tag soon">SOON</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="padding: 2rem 1.5rem; border-top: 1px solid var(--line); margin-top: 1rem;">
+    <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--ink-faint); text-transform: uppercase; margin-bottom: 0.5rem;">★ Liên hệ</div>
+    <div style="font-family: var(--serif); font-style: italic; color: var(--ink-dim); font-size: 0.9rem;">nguyenduchoa.com</div>
+  </div>
+</aside>
+
+
+<!-- ============ MAIN CONTENT ============ -->
+<main class="main">
+  <div class="content">
+
+    <!-- BREADCRUMB -->
+    <nav class="breadcrumb">
+      <a href="#">Trang chủ</a>
+      <span class="sep">›</span>
+      <a href="#">Chương I · Tư duy nền tảng</a>
+      <span class="sep">›</span>
+      <a href="#">Quy luật thị trường</a>
+      <span class="sep">›</span>
+      <span class="current">Buổi 47</span>
+    </nav>
+
+    <!-- LESSON HEADER -->
+    <header class="lesson-header" id="lesson-47">
+      <div class="lesson-meta">
+        <span>BUỔI HỌC · 47</span>
+        <span class="gold">CHƯƠNG I — TƯ DUY NỀN TẢNG</span>
+        <span>⏱ 50 PHÚT</span>
+      </div>
+      <h1 class="lesson-title">
+        20 Quy Luật<br><em>Vàng</em> Của Trader
+      </h1>
+      <p class="lesson-summary">
+        Tổng hợp tư duy, kỷ luật và chiến thuật giao dịch — dành cho người
+        muốn tồn tại và chiến thắng trong cuộc chơi của nhà cái. Buổi học ôn lại
+        20 quy luật cốt lõi mà 99% trader ngoài cộng đồng đang vi phạm.
+      </p>
+
+      <div class="lesson-stats">
+        <div class="stat-item">
+          <div class="label">Quy luật</div>
+          <div class="value gold">20</div>
+        </div>
+        <div class="stat-item">
+          <div class="label">R:R mục tiêu</div>
+          <div class="value bull">1:5–10</div>
+        </div>
+        <div class="stat-item">
+          <div class="label">Phân bổ vốn</div>
+          <div class="value">4·3·3</div>
+        </div>
+        <div class="stat-item">
+          <div class="label">Win rate</div>
+          <div class="value bull">≥ 30%</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- IN-PAGE TOC -->
+    <div class="toc-inpage">
+      <div class="head">⊹ Mục lục bài học</div>
+      <div class="toc-grid">
+        <a href="#r1" class="toc-item-mini"><span class="n">01</span><span>Xu hướng — Quy luật gia tốc</span></a>
+        <a href="#r2" class="toc-item-mini"><span class="n">02</span><span>Tự chịu trách nhiệm tài khoản</span></a>
+        <a href="#r3" class="toc-item-mini"><span class="n">03</span><span>Thắng nhờ nguyên tắc</span></a>
+        <a href="#r4" class="toc-item-mini"><span class="n">04</span><span>Danh mục backup an toàn</span></a>
+        <a href="#r5" class="toc-item-mini"><span class="n">05</span><span>Xu hướng quyết định</span></a>
+        <a href="#r6" class="toc-item-mini"><span class="n">06</span><span>Cá mập để lại dấu chân</span></a>
+        <a href="#r7" class="toc-item-mini"><span class="n">07</span><span>Tâm lý &amp; cảm xúc</span></a>
+        <a href="#r8" class="toc-item-mini"><span class="n">08</span><span>Nhóm ngành dẫn dắt</span></a>
+        <a href="#r9" class="toc-item-mini"><span class="n">09</span><span>Trader nào cũng cắt lỗ</span></a>
+        <a href="#r10" class="toc-item-mini"><span class="n">10</span><span>Mã dẫn đầu đạt đỉnh</span></a>
+        <a href="#r11" class="toc-item-mini"><span class="n">11</span><span>Đám đông &amp; cảm xúc</span></a>
+        <a href="#r12" class="toc-item-mini"><span class="n">12</span><span>Ba trạng thái thị trường</span></a>
+        <a href="#r13" class="toc-item-mini"><span class="n">13</span><span>Tin tốt ≠ tăng</span></a>
+        <a href="#r14" class="toc-item-mini"><span class="n">14</span><span>Tin xấu ≠ giảm</span></a>
+        <a href="#r15" class="toc-item-mini"><span class="n">15</span><span>Xu hướng mạnh = 5 sóng</span></a>
+        <a href="#r16" class="toc-item-mini"><span class="n">16</span><span>Uptrend cần chiến dịch dài</span></a>
+        <a href="#r17" class="toc-item-mini"><span class="n">17</span><span>Mua điểm an toàn</span></a>
+        <a href="#r18" class="toc-item-mini"><span class="n">18</span><span>Nguyên nhân vs hệ quả</span></a>
+        <a href="#r19" class="toc-item-mini"><span class="n">19</span><span>Tư duy ngược dòng</span></a>
+        <a href="#r20" class="toc-item-mini"><span class="n">20</span><span>Vùng phân phối ở đỉnh</span></a>
+      </div>
+    </div>
+
+    <!-- ============ CHƯƠNG NỘI DUNG 1 ============ -->
+    <div class="chapter-divider">
+      <div class="num">— Phần I</div>
+      <h2>Năm <span class="accent">nguyên tắc</span><br>nền móng.</h2>
+      <p class="intro">
+        Trước khi học bất kỳ một hệ thống giao dịch nào, người trader chuyên nghiệp
+        phải định hình lại tư duy. Sai từ đây — mọi kỹ thuật phía sau đều vô nghĩa.
+      </p>
+    </div>
+
+    <!-- RULE 1 -->
+    <section class="rule" id="r1">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>01</div>
+        <div>
+          <h3 class="rule-title">Khi giá đang tăng — nó sẽ <em>tiếp tục tăng.</em> Khi giảm — tiếp tục giảm.</h3>
+          <div class="rule-quote">"Lý thuyết gia tốc của đoàn tàu: con tàu đang lao tới không dừng lại vì hành khách thấy nó nhanh quá."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <p>Đây là quy luật <strong>quan trọng nhất</strong> — và bị hiểu sai nhiều nhất. Đám đông luôn cảm thấy "giá đã quá cao" trong khi xu hướng vẫn còn nguyên động lượng, và "giá đã quá thấp" khi xu hướng giảm chưa kết thúc.</p>
+          <p>Nhìn lại BTC từ 09/2020 đến 01/2021: giá nhảy từ <span class="highlight">10.000$ lên 40.000$</span> chỉ trong 3–4 tháng. Tâm lý đám đông: "Cao quá rồi." Kết quả: bỏ lỡ con sóng lớn nhất của chu kỳ.</p>
+          <div class="callout">
+            <div class="label">Nguyên Tắc Cốt Lõi</div>
+            <p>Cảm giác "cao" và "thấp" không phải là tín hiệu giao dịch. Tín hiệu thực sự nằm ở gia tốc và xu hướng trên đồ thị.</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>BTC/USD · Daily</span><span class="gold">GIA TỐC</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4ade80" stop-opacity="0.3"/><stop offset="100%" stop-color="#4ade80" stop-opacity="0"/></linearGradient></defs>
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="0" y1="50" x2="500" y2="50"/><line x1="0" y1="120" x2="500" y2="120"/><line x1="0" y1="190" x2="500" y2="190"/></g>
+            <path d="M 20 230 L 60 220 L 100 210 L 140 195 L 170 160 L 200 115 L 230 75 L 250 95 L 280 85 L 310 55 L 340 40 L 380 70 L 420 50 L 460 30 L 480 25 L 480 260 L 20 260 Z" fill="url(#g1)"/>
+            <path d="M 20 230 L 60 220 L 100 210 L 140 195 L 170 160 L 200 115 L 230 75 L 250 95 L 280 85 L 310 55 L 340 40 L 380 70 L 420 50 L 460 30 L 480 25" stroke="#4ade80" stroke-width="2" fill="none"/>
+            <rect x="225" y="70" width="65" height="35" fill="none" stroke="#d4a85a" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="257" y="63" fill="#d4a85a" font-family="JetBrains Mono" font-size="8" text-anchor="middle">ĐIỀU CHỈNH</text>
+            <circle cx="200" cy="115" r="4" fill="#d4a85a"/>
+            <text x="200" y="140" fill="#a8a39a" font-family="JetBrains Mono" font-size="8" text-anchor="middle">"giá đã cao"</text>
+            <circle cx="460" cy="30" r="5" fill="#4ade80" class="pulse"/>
+            <text x="460" y="18" fill="#4ade80" font-family="JetBrains Mono" font-size="9" text-anchor="middle">+300%</text>
+          </svg>
+          <div class="chart-caption">BTC 09/2020–01/2021. Trend follower mua A' và giữ tới đỉnh sóng.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RULE 2 -->
+    <section class="rule" id="r2">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>02</div>
+        <div>
+          <h3 class="rule-title">Bạn là người <em>duy nhất</em> chịu trách nhiệm cho tài khoản của mình.</h3>
+          <div class="rule-quote">"Không có con bạc nào thắng một lần mà dừng lại. Không có ai thắng nhờ kèo người khác mà giữ được tiền lâu dài."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <p>Đầu 2024 báo chí công bố: <strong>80% triệu phú đô-la crypto</strong> đã bay sạch tài khoản trong downtrend. Họ kiếm được trong uptrend bằng cách nào? Nước nổi bèo nổi — không có gì cả.</p>
+          <p>Lời khuyên của bất kỳ chuyên gia nào — kể cả khi đúng — cũng chỉ đúng với <span class="highlight">vị thế của họ</span>: vốn, tỷ trọng, khung thời gian, target khác nhau. Copy mù quáng là tự sát.</p>
+          <div class="framework">
+            <div class="title">Ba Cấp Độ Phụ Thuộc</div>
+            <ul>
+              <li><span class="marker">L1</span><span>Sao chép kèo hội nhóm, KOL</span><span class="pct">Chết nhanh</span></li>
+              <li><span class="marker">L2</span><span>Nghe phân tích + tự quyết cảm tính</span><span class="pct">Chết chậm</span></li>
+              <li><span class="marker">L3</span><span>Tự nghiên cứu, có hệ thống</span><span class="pct">Tồn tại</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>Phân Phối Lợi Nhuận</span><span class="gold">2021–2023</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="60" y1="40" x2="500" y2="40"/><line x1="60" y1="120" x2="500" y2="120"/><line x1="60" y1="200" x2="500" y2="200"/></g>
+            <rect x="80" y="55" width="60" height="180" fill="#ef4444" opacity="0.85"/>
+            <text x="110" y="48" fill="#ef4444" font-family="Inter Tight" font-size="13" font-weight="700" text-anchor="middle">80%</text>
+            <text x="110" y="255" fill="#a8a39a" font-family="JetBrains Mono" font-size="9" text-anchor="middle">MẤT TRẮNG</text>
+            <rect x="180" y="140" width="60" height="95" fill="#d4a85a" opacity="0.85"/>
+            <text x="210" y="133" fill="#d4a85a" font-family="Inter Tight" font-size="13" font-weight="700" text-anchor="middle">15%</text>
+            <text x="210" y="255" fill="#a8a39a" font-family="JetBrains Mono" font-size="9" text-anchor="middle">HÒA/LỖ NHẸ</text>
+            <rect x="280" y="185" width="60" height="50" fill="#4ade80" opacity="0.85"/>
+            <text x="310" y="178" fill="#4ade80" font-family="Inter Tight" font-size="13" font-weight="700" text-anchor="middle">4%</text>
+            <text x="310" y="255" fill="#a8a39a" font-family="JetBrains Mono" font-size="9" text-anchor="middle">CÓ LÃI</text>
+            <rect x="380" y="215" width="60" height="20" fill="#f4c97b"/>
+            <text x="410" y="208" fill="#f4c97b" font-family="Inter Tight" font-size="13" font-weight="700" text-anchor="middle">1%</text>
+            <text x="410" y="255" fill="#a8a39a" font-family="JetBrains Mono" font-size="9" text-anchor="middle">GIÀU</text>
+          </svg>
+          <div class="chart-caption">Cuộc chơi ăn thịt — dòng tiền chảy từ người thiếu kinh nghiệm sang người ưu tú.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RULE 3 -->
+    <section class="rule" id="r3">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>03</div>
+        <div>
+          <h3 class="rule-title">Thắng <em>không phải</em> vì mua đúng coin tốt — mà vì đầu tư có nguyên tắc.</h3>
+          <div class="rule-quote">"LUNA từng nằm top 10. FTX từng là sàn số 2 thế giới. Chỉ có nguyên tắc bảo vệ bạn khỏi rủi ro không tưởng."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <p>Không ai tránh được tất cả thiên nga đen. LUNA sụp từ <strong>120$ về 0,0001$</strong>. FTX bốc hơi qua đêm. Câu hỏi không phải "làm sao tránh" — mà là <span class="highlight">"khi nó xảy ra, mình mất bao nhiêu?"</span></p>
+          <div class="framework">
+            <div class="title">Khung Phân Bổ 4-3-3</div>
+            <ul>
+              <li><span class="marker">D1</span><span>Blue chip — BTC, ETH, BNB</span><span class="pct">40%</span></li>
+              <li><span class="marker">D2</span><span>Top hệ sinh thái, mid-cap</span><span class="pct">30%</span></li>
+              <li><span class="marker">D3</span><span>Low-cap moonshot 50–100x</span><span class="pct">30%</span></li>
+            </ul>
+          </div>
+          <p>Lỗi tử thần: <strong>tất tay vào D3</strong>. Khi rủi ro hệ thống xảy ra, mất sạch — không còn vốn làm lại.</p>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>Portfolio 4-3-3</span><span class="gold">ALLOCATION</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(140, 140)">
+              <circle r="85" fill="none" stroke="#4ade80" stroke-width="35" stroke-dasharray="213.6 533.8" transform="rotate(-90)"/>
+              <circle r="85" fill="none" stroke="#d4a85a" stroke-width="35" stroke-dasharray="160.2 533.8" stroke-dashoffset="-213.6" transform="rotate(-90)"/>
+              <circle r="85" fill="none" stroke="#ef4444" stroke-width="35" stroke-dasharray="160.2 533.8" stroke-dashoffset="-373.8" transform="rotate(-90)"/>
+              <text y="-5" fill="#f5f1e8" font-family="Fraunces" font-size="28" font-weight="300" text-anchor="middle" font-style="italic">100</text>
+              <text y="15" fill="#a8a39a" font-family="JetBrains Mono" font-size="9" text-anchor="middle">PORTFOLIO</text>
+            </g>
+            <g transform="translate(280, 70)">
+              <rect x="0" y="0" width="12" height="12" fill="#4ade80"/>
+              <text x="20" y="10" fill="#f5f1e8" font-family="Inter Tight" font-size="12" font-weight="600">BLUE CHIP — 40%</text>
+              <text x="20" y="25" fill="#6b6862" font-family="JetBrains Mono" font-size="9">BTC · ETH · BNB</text>
+              <rect x="0" y="50" width="12" height="12" fill="#d4a85a"/>
+              <text x="20" y="60" fill="#f5f1e8" font-family="Inter Tight" font-size="12" font-weight="600">MID-CAP — 30%</text>
+              <text x="20" y="75" fill="#6b6862" font-family="JetBrains Mono" font-size="9">Top hệ sinh thái</text>
+              <rect x="0" y="100" width="12" height="12" fill="#ef4444"/>
+              <text x="20" y="110" fill="#f5f1e8" font-family="Inter Tight" font-size="12" font-weight="600">LOW-CAP — 30%</text>
+              <text x="20" y="125" fill="#6b6862" font-family="JetBrains Mono" font-size="9">Moonshot 50–100x</text>
+              <text x="0" y="160" fill="#d4a85a" font-family="JetBrains Mono" font-size="9">D3 = -100% → TỔNG -30%</text>
+            </g>
+          </svg>
+          <div class="chart-caption">Ngay cả khi nhánh rủi ro bay sạch, tổng tổn thất vẫn ở mức phục hồi được.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RULE 4 -->
+    <section class="rule" id="r4">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>04</div>
+        <div>
+          <h3 class="rule-title">Luôn duy trì một <em>danh mục backup</em> bằng các mã an toàn.</h3>
+          <div class="rule-quote">"Coin lớn không phải để ăn nhanh — nó là cái phao để bạn sống sót qua bão."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <p>Sai lầm phổ biến của trader F0: bỏ qua BTC/ETH vì "ăn được bao nhiêu", dồn toàn lực vào meme coin. Khi rủi ro hệ thống đến — không còn gì cả.</p>
+          <div class="framework">
+            <div class="title">Bốn Vai Trò Backup</div>
+            <ul>
+              <li><span class="marker">▸</span><span>Hấp thụ sốc khi D3 sụp</span><span class="pct">PHAO</span></li>
+              <li><span class="marker">▸</span><span>Dòng tiền ổn định qua chu kỳ</span><span class="pct">NỀN</span></li>
+              <li><span class="marker">▸</span><span>Cho bạn sự bình tĩnh tâm lý</span><span class="pct">TL</span></li>
+              <li><span class="marker">▸</span><span>Giữ bạn trong cuộc chơi</span><span class="pct">SỐNG</span></li>
+            </ul>
+          </div>
+          <div class="callout">
+            <div class="label">Quan Trọng</div>
+            <p>Phân bổ là toán học; backup là triết lý. Thiếu một trong hai, bạn vẫn vỡ khi rủi ro hệ thống đến.</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>Drawdown So Sánh</span><span class="gold">CÓ vs KHÔNG</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="40" y1="50" x2="490" y2="50"/><line x1="40" y1="115" x2="490" y2="115"/><line x1="40" y1="180" x2="490" y2="180"/><line x1="40" y1="240" x2="490" y2="240"/></g>
+            <path d="M 40 180 L 80 160 L 120 130 L 160 100 L 200 70 L 240 55 L 280 85 L 320 130 L 360 185 L 400 225 L 440 240 L 480 245" stroke="#ef4444" stroke-width="2" fill="none"/>
+            <path d="M 40 180 L 80 170 L 120 155 L 160 140 L 200 125 L 240 115 L 280 125 L 320 140 L 360 160 L 400 175 L 440 180 L 480 175" stroke="#4ade80" stroke-width="2" fill="none"/>
+            <circle cx="40" cy="180" r="4" fill="#d4a85a"/>
+            <circle cx="480" cy="245" r="4" fill="#ef4444"/>
+            <text x="475" y="260" fill="#ef4444" font-family="JetBrains Mono" font-size="9" text-anchor="end">-75% · ALL-IN LOW-CAP</text>
+            <circle cx="480" cy="175" r="4" fill="#4ade80"/>
+            <text x="475" y="160" fill="#4ade80" font-family="JetBrains Mono" font-size="9" text-anchor="end">+5% · 4-3-3</text>
+            <circle cx="240" cy="55" r="4" fill="#d4a85a"/>
+            <text x="240" y="42" fill="#d4a85a" font-family="JetBrains Mono" font-size="9" text-anchor="middle">ATH</text>
+          </svg>
+          <div class="chart-caption">Mô phỏng cycle 2021–2023. Portfolio 4-3-3 bảo toàn vốn qua bear.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RULE 5 -->
+    <section class="rule" id="r5">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>05</div>
+        <div>
+          <h3 class="rule-title">Xu hướng thị trường là <em>yếu tố quyết định.</em> Tấn công hay phòng thủ — tùy trend.</h3>
+          <div class="rule-quote">"Đầu tư mà không xác định được xu hướng — thì ông chết. Đơn giản vậy thôi."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <p>Uptrend: <strong>tấn công</strong> — tăng tỷ trọng, hold dài, R:R lớn. Downtrend: <strong>phòng thủ</strong> — rút vốn, đánh ngắn, bảo toàn.</p>
+          <p>Sai lầm chết người: dùng <span class="highlight">chiến lược uptrend trong downtrend</span>. Đám đông bear vẫn hỏi "khi nào lên 100k để về bờ?" — đó là tư duy uptrend ép vào downtrend. Kết quả: kẹp.</p>
+          <div class="framework">
+            <div class="title">Bốn Yếu Tố Xác Định</div>
+            <ul>
+              <li><span class="marker">①</span><span>Phân tích kỹ thuật đa khung</span><span class="pct">TA</span></li>
+              <li><span class="marker">②</span><span>Tâm lý đám đông &amp; sentiment</span><span class="pct">SENT</span></li>
+              <li><span class="marker">③</span><span>Tin tức cơ bản &amp; ngành</span><span class="pct">FA</span></li>
+              <li><span class="marker">④</span><span>Dòng tiền vào/ra</span><span class="pct">FLOW</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>Trend → Strategy</span><span class="gold">ATTACK/DEF</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="0" y1="70" x2="500" y2="70"/><line x1="0" y1="140" x2="500" y2="140"/><line x1="0" y1="210" x2="500" y2="210"/></g>
+            <rect x="20" y="30" width="200" height="220" fill="#4ade80" opacity="0.05"/>
+            <text x="120" y="48" fill="#4ade80" font-family="JetBrains Mono" font-size="9" text-anchor="middle" letter-spacing="2">UPTREND · TẤN CÔNG</text>
+            <rect x="280" y="30" width="200" height="220" fill="#ef4444" opacity="0.05"/>
+            <text x="380" y="48" fill="#ef4444" font-family="JetBrains Mono" font-size="9" text-anchor="middle" letter-spacing="2">DOWNTREND · PHÒNG THỦ</text>
+            <path d="M 20 210 L 60 190 L 100 160 L 140 125 L 180 90 L 220 70" stroke="#4ade80" stroke-width="2.5" fill="none"/>
+            <path d="M 220 70 L 250 85 L 280 100" stroke="#d4a85a" stroke-width="2.5" fill="none" stroke-dasharray="4 3"/>
+            <path d="M 280 100 L 320 135 L 360 165 L 400 200 L 440 225 L 480 240" stroke="#ef4444" stroke-width="2.5" fill="none"/>
+            <text x="120" y="270" fill="#4ade80" font-family="Inter Tight" font-size="10" text-anchor="middle" font-weight="600">↑ Hold dài · Buy dip</text>
+            <text x="380" y="270" fill="#ef4444" font-family="Inter Tight" font-size="10" text-anchor="middle" font-weight="600">↓ Cash · Bảo toàn</text>
+          </svg>
+          <div class="chart-caption">Mỗi regime cần chiến lược ngược nhau. Đọc sai trend = thua dù đúng kỹ thuật.</div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============ CHƯƠNG NỘI DUNG 2 ============ -->
+    <div class="chapter-divider">
+      <div class="num">— Phần II</div>
+      <h2>Dấu chân <span class="accent">cá mập</span><br>&amp; tâm lý.</h2>
+      <p class="intro">
+        Cá mập di chuyển dòng tiền lớn — bạn không cần là cá mập, chỉ cần biết đọc dấu chân.
+        Tâm lý là khoảng cách duy nhất giữa kiến thức và lợi nhuận.
+      </p>
+    </div>
+
+    <!-- RULE 6 -->
+    <section class="rule" id="r6">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>06</div>
+        <div>
+          <h3 class="rule-title">Cá mập luôn để lại <em>dấu chân lớn</em> trước khi đẩy con sóng.</h3>
+          <div class="rule-quote">"Đám đông không quyết định xu hướng lớn. Sóng 5000–10000 giá luôn có sự chuẩn bị."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <p>Mọi xu hướng từ khung <strong>1D trở lên</strong> đều phải có sự chuẩn bị của smart money. Đám đông fomo chỉ <em>hoàn thành</em> con sóng, không <em>khởi tạo</em>.</p>
+          <div class="framework">
+            <div class="title">Hai Hiệu Ứng Bắt Buộc</div>
+            <ul>
+              <li><span class="marker">①</span><span>Truyền thông — Keyword, narrative</span><span class="pct">MKT</span></li>
+              <li><span class="marker">②</span><span>Giá cả — Mồi giá cho fomo</span><span class="pct">PRICE</span></li>
+            </ul>
+          </div>
+          <p>Keyword lịch sử: <span class="highlight">DeFi</span> 2020, <span class="highlight">NFT</span> 2021, <span class="highlight">Web3</span> 2022, <span class="highlight">AI</span> 2023–2024. Mỗi mùa narrative đi trước, giá đi sau.</p>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>Anatomy Of A Pump</span><span class="gold">WYCKOFF</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="40" y1="50" x2="490" y2="50"/><line x1="40" y1="125" x2="490" y2="125"/><line x1="40" y1="200" x2="490" y2="200"/></g>
+            <rect x="40" y="185" width="120" height="35" fill="#d4a85a" opacity="0.1" stroke="#d4a85a" stroke-dasharray="3 3"/>
+            <path d="M 40 215 L 60 210 L 80 218 L 100 205 L 120 215 L 140 203 L 160 208" stroke="#d4a85a" stroke-width="1.5" fill="none"/>
+            <text x="100" y="178" fill="#d4a85a" font-family="JetBrains Mono" font-size="8" text-anchor="middle">① ACCUM</text>
+            <path d="M 160 208 L 200 180 L 240 140 L 280 90 L 320 55" stroke="#4ade80" stroke-width="2.5" fill="none"/>
+            <text x="240" y="40" fill="#4ade80" font-family="JetBrains Mono" font-size="8" text-anchor="middle">② MARKUP · FOMO</text>
+            <path d="M 320 55 L 360 75 L 400 65 L 440 85 L 480 80" stroke="#ef4444" stroke-width="2" fill="none"/>
+            <text x="400" y="40" fill="#ef4444" font-family="JetBrains Mono" font-size="8" text-anchor="middle">③ DIST</text>
+          </svg>
+          <div class="chart-caption">Wyckoff cổ điển: tích lũy → đẩy giá → phân phối. Dấu chân không bao giờ nói dối.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RULE 7 -->
+    <section class="rule" id="r7">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>07</div>
+        <div>
+          <h3 class="rule-title">Yếu tố quan trọng nhất không phải kiến thức — mà là <em>tâm lý và kỷ luật.</em></h3>
+          <div class="rule-quote">"Trader thất bại không vì thiếu hệ thống. Họ thất bại vì cứ chạy theo hệ thống mới mà không hoàn thiện tâm lý."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <p>Vòng tròn luẩn quẩn của 99% trader: học Elliott → không lãi → đổ tại Elliott → học Ichimoku → vẫn thua → đổ tại Ichimoku → học Price Action...</p>
+          <p>Họ <strong>không bao giờ nhìn nhận</strong> vấn đề thực sự: kiến thức đã đủ, nhưng tâm lý và kỷ luật chưa được rèn.</p>
+          <div class="framework">
+            <div class="title">Chuỗi Nhân-Quả Tâm Lý</div>
+            <ul>
+              <li><span class="marker">→</span><span>Mục tiêu rõ ràng &amp; đủ lớn</span><span class="pct">GỐC</span></li>
+              <li><span class="marker">→</span><span>Tạo kỷ luật hành động</span><span class="pct">KL</span></li>
+              <li><span class="marker">→</span><span>Kỷ luật ổn định tâm lý</span><span class="pct">TL</span></li>
+              <li><span class="marker">→</span><span>Tâm lý = quyết định đúng</span><span class="pct">QĐ</span></li>
+              <li><span class="marker">→</span><span>Lợi nhuận bền vững</span><span class="pct">$$$</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>Tam Giác Trader Pro</span><span class="gold">3 PILLARS</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="250,30 460,235 40,235" fill="none" stroke="#2a2a30" stroke-width="1"/>
+            <polygon points="250,30 460,235 40,235" fill="#d4a85a" opacity="0.03"/>
+            <circle cx="250" cy="30" r="6" fill="#d4a85a"/>
+            <text x="250" y="18" fill="#d4a85a" font-family="Inter Tight" font-size="13" font-weight="700" text-anchor="middle">TÂM LÝ</text>
+            <circle cx="460" cy="235" r="6" fill="#4ade80"/>
+            <text x="460" y="260" fill="#4ade80" font-family="Inter Tight" font-size="13" font-weight="700" text-anchor="middle">KIẾN THỨC</text>
+            <circle cx="40" cy="235" r="6" fill="#ef4444"/>
+            <text x="40" y="260" fill="#ef4444" font-family="Inter Tight" font-size="13" font-weight="700" text-anchor="middle">KỶ LUẬT</text>
+            <circle cx="250" cy="165" r="32" fill="#0a0a0b" stroke="#d4a85a" stroke-width="1.5"/>
+            <text x="250" y="163" fill="#d4a85a" font-family="Fraunces" font-size="14" font-style="italic" text-anchor="middle">$</text>
+            <text x="250" y="178" fill="#f5f1e8" font-family="JetBrains Mono" font-size="9" text-anchor="middle">PROFIT</text>
+          </svg>
+          <div class="chart-caption">Thiếu một đỉnh, tam giác sụp. Đa số trader chỉ tập trung Kiến Thức.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RULE 8 -->
+    <section class="rule" id="r8">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>08</div>
+        <div>
+          <h3 class="rule-title">Mỗi sóng đều có <em>nhóm ngành dẫn dắt</em> — xác định được, bạn đi trước đám đông.</h3>
+          <div class="rule-quote">"Không có narrative dẫn dắt, sóng đẩy chỉ là lửa rơm."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <p>Crypto: DeFi → NFT → Metaverse → Web3 → AI → RWA → Memecoin. Luôn có một <strong>keyword chủ đạo</strong> ở mỗi mùa.</p>
+          <div class="framework">
+            <div class="title">Checklist Narrative</div>
+            <ul>
+              <li><span class="marker">?</span><span>Keyword nào đang nổi?</span><span class="pct">KW</span></li>
+              <li><span class="marker">?</span><span>Báo đài, KOL đang nói gì?</span><span class="pct">PR</span></li>
+              <li><span class="marker">?</span><span>Nhóm coin nào outperform BTC?</span><span class="pct">RS</span></li>
+              <li><span class="marker">?</span><span>TVL hệ sinh thái nào tăng?</span><span class="pct">$$</span></li>
+            </ul>
+          </div>
+          <p>Nếu <strong>không có narrative</strong> đi kèm setup TA — con sóng rất dễ thất bại.</p>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>Lịch Sử Narrative</span><span class="gold">ROTATION</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="60" y1="40" x2="490" y2="40"/><line x1="60" y1="120" x2="490" y2="120"/><line x1="60" y1="200" x2="490" y2="200"/></g>
+            <rect x="70" y="215" width="55" height="25" fill="#4ade80" opacity="0.7"/>
+            <text x="97" y="232" fill="#0a0a0b" font-family="Inter Tight" font-size="10" font-weight="700" text-anchor="middle">DeFi</text>
+            <text x="97" y="258" fill="#6b6862" font-family="JetBrains Mono" font-size="8" text-anchor="middle">2020</text>
+            <rect x="135" y="95" width="55" height="145" fill="#d4a85a" opacity="0.7"/>
+            <text x="162" y="175" fill="#0a0a0b" font-family="Inter Tight" font-size="10" font-weight="700" text-anchor="middle">NFT</text>
+            <text x="162" y="258" fill="#6b6862" font-family="JetBrains Mono" font-size="8" text-anchor="middle">2021</text>
+            <rect x="200" y="65" width="55" height="175" fill="#a78bfa" opacity="0.7"/>
+            <text x="227" y="160" fill="#0a0a0b" font-family="Inter Tight" font-size="10" font-weight="700" text-anchor="middle">META</text>
+            <text x="227" y="258" fill="#6b6862" font-family="JetBrains Mono" font-size="8" text-anchor="middle">'21-22</text>
+            <rect x="265" y="160" width="55" height="80" fill="#ef4444" opacity="0.5"/>
+            <text x="292" y="205" fill="#f5f1e8" font-family="Inter Tight" font-size="9" font-weight="700" text-anchor="middle">BEAR</text>
+            <text x="292" y="258" fill="#6b6862" font-family="JetBrains Mono" font-size="8" text-anchor="middle">2022</text>
+            <rect x="330" y="115" width="55" height="125" fill="#60a5fa" opacity="0.7"/>
+            <text x="357" y="185" fill="#0a0a0b" font-family="Inter Tight" font-size="11" font-weight="700" text-anchor="middle">AI</text>
+            <text x="357" y="258" fill="#6b6862" font-family="JetBrains Mono" font-size="8" text-anchor="middle">2023-24</text>
+            <rect x="395" y="70" width="55" height="170" fill="#f4c97b" opacity="0.8"/>
+            <text x="422" y="165" fill="#0a0a0b" font-family="Inter Tight" font-size="10" font-weight="700" text-anchor="middle">MEME</text>
+            <text x="422" y="258" fill="#6b6862" font-family="JetBrains Mono" font-size="8" text-anchor="middle">2024-25</text>
+          </svg>
+          <div class="chart-caption">Mỗi mùa một narrative bùng nổ. Người bám trend đúng — 10x là tối thiểu.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RULE 9 -->
+    <section class="rule" id="r9">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>09</div>
+        <div>
+          <h3 class="rule-title">Mọi trader thành công <em>đều phải cắt lỗ.</em> Không có ngoại lệ.</h3>
+          <div class="rule-quote">"Trading là trò chơi xác suất. 10 lệnh không thể thắng cả 10."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <p>Toán học của trading với R:R = 1:5:</p>
+          <div class="framework">
+            <div class="title">10 Lệnh — Win Rate 30%</div>
+            <ul>
+              <li><span class="marker">×</span><span>7 lệnh thua, mỗi -1R</span><span class="pct">-7R</span></li>
+              <li><span class="marker">✓</span><span>3 lệnh thắng, mỗi +5R</span><span class="pct">+15R</span></li>
+              <li><span class="marker">Σ</span><span>Tổng kết quả</span><span class="pct">+8R</span></li>
+            </ul>
+          </div>
+          <p>R:R có thể lên <strong>1:7 hoặc 1:10</strong>. Khi đó win rate <span class="highlight">chỉ cần 20–25%</span> là vẫn lãi mạnh.</p>
+          <div class="callout">
+            <div class="label">Quy Tắc 1%</div>
+            <p>Mỗi lệnh rủi ro tối đa 1% tài khoản. Mất 1% — đứng dậy đi tiếp. Mất 20%/lệnh — vỡ.</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>10 Lệnh · R:R 1:5</span><span class="gold">EXPECTANCY</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="40" y1="140" x2="490" y2="140"/><line x1="40" y1="70" x2="490" y2="70"/><line x1="40" y1="210" x2="490" y2="210"/></g>
+            <line x1="40" y1="140" x2="490" y2="140" stroke="#a8a39a" stroke-width="1"/>
+            <rect x="55" y="140" width="30" height="14" fill="#ef4444"/>
+            <rect x="95" y="140" width="30" height="14" fill="#ef4444"/>
+            <rect x="135" y="140" width="30" height="14" fill="#ef4444"/>
+            <rect x="175" y="140" width="30" height="14" fill="#ef4444"/>
+            <rect x="215" y="140" width="30" height="14" fill="#ef4444"/>
+            <rect x="255" y="140" width="30" height="14" fill="#ef4444"/>
+            <rect x="295" y="140" width="30" height="14" fill="#ef4444"/>
+            <rect x="335" y="75" width="30" height="65" fill="#4ade80"/>
+            <text x="350" y="68" fill="#4ade80" font-family="JetBrains Mono" font-size="9" text-anchor="middle">+5R</text>
+            <rect x="375" y="75" width="30" height="65" fill="#4ade80"/>
+            <text x="390" y="68" fill="#4ade80" font-family="JetBrains Mono" font-size="9" text-anchor="middle">+5R</text>
+            <rect x="415" y="75" width="30" height="65" fill="#4ade80"/>
+            <text x="430" y="68" fill="#4ade80" font-family="JetBrains Mono" font-size="9" text-anchor="middle">+5R</text>
+            <line x1="40" y1="90" x2="490" y2="90" stroke="#d4a85a" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="485" y="85" fill="#d4a85a" font-family="JetBrains Mono" font-size="10" text-anchor="end" font-weight="700">NET +8R</text>
+            <text x="265" y="245" fill="#a8a39a" font-family="JetBrains Mono" font-size="9" text-anchor="middle">WIN 30% · R:R 1:5</text>
+            <text x="265" y="265" fill="#d4a85a" font-family="Inter Tight" font-size="11" text-anchor="middle" font-weight="600">EXPECTANCY +0.8R / TRADE</text>
+          </svg>
+          <div class="chart-caption">Thua 7/10 vẫn lãi đậm — sức mạnh của positive expectancy.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RULE 10 -->
+    <section class="rule" id="r10">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>10</div>
+        <div>
+          <h3 class="rule-title">Khi mã <em>dẫn đầu</em> đạt đỉnh — chính là lúc cân nhắc rời thị trường.</h3>
+          <div class="rule-quote">"BTC topping + altcoin bay tứ tung — đó không phải tin vui. Đó là chuông cảnh báo."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <p>Bitcoin là vua của thanh khoản crypto. Khi BTC topping, dòng tiền không biến mất — nó <em>luân chuyển</em> sang altcoin trong nỗ lực cuối cùng của cá mập để xả.</p>
+          <div class="framework">
+            <div class="title">Bộ Ba Tín Hiệu Đỉnh</div>
+            <ul>
+              <li><span class="marker">①</span><span>BTC mất momentum khung 1W</span><span class="pct">TA</span></li>
+              <li><span class="marker">②</span><span>BTC.D giảm, dòng tiền sang alt</span><span class="pct">FLOW</span></li>
+              <li><span class="marker">③</span><span>Đám đông euphoria, "100k", "200k"</span><span class="pct">SENT</span></li>
+            </ul>
+          </div>
+          <div class="callout">
+            <div class="label">Quy Tắc Vàng</div>
+            <p>Khi thấy "thị trường dễ kiếm tiền quá" — đó là dấu hiệu cá mập đã chuẩn bị xả. Bán dần, không bán hết.</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>BTC.D Đảo · Alt Season</span><span class="gold">TOP</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="40" y1="70" x2="490" y2="70"/><line x1="40" y1="140" x2="490" y2="140"/><line x1="40" y1="210" x2="490" y2="210"/></g>
+            <path d="M 40 210 L 80 190 L 120 165 L 160 130 L 200 95 L 240 80 L 280 85 L 320 90 L 360 100 L 400 115 L 440 135 L 480 160" stroke="#f4c97b" stroke-width="2" fill="none"/>
+            <text x="240" y="65" fill="#f4c97b" font-family="JetBrains Mono" font-size="9" text-anchor="middle">BTC TOPPING</text>
+            <path d="M 40 220 L 80 215 L 120 205 L 160 195 L 200 175 L 240 150 L 280 115 L 320 70 L 360 50 L 400 85 L 440 160 L 480 215" stroke="#a78bfa" stroke-width="2" fill="none" stroke-dasharray="3 2"/>
+            <circle cx="360" cy="50" r="5" fill="#ef4444" class="pulse"/>
+            <text x="360" y="40" fill="#ef4444" font-family="JetBrains Mono" font-size="9" text-anchor="middle">ALT BLOW-OFF</text>
+            <rect x="380" y="35" width="105" height="215" fill="#ef4444" opacity="0.05"/>
+            <text x="432" y="250" fill="#ef4444" font-family="JetBrains Mono" font-size="9" text-anchor="middle">→ CRASH</text>
+          </svg>
+          <div class="chart-caption">BTC topping → tiền sang alt → cả hai cùng sụp. Pattern của mọi đỉnh cycle.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CHƯƠNG NỘI DUNG 3 ============ -->
+    <div class="chapter-divider">
+      <div class="num">— Phần III</div>
+      <h2>Đám đông &amp; <span class="accent">sóng</span><br>thị trường.</h2>
+      <p class="intro">
+        Đám đông luôn sai ở bước ngoặt. Tin tức là hệ quả, không phải nguyên nhân.
+        Hiểu hai điều này, bạn đứng ở phía bên kia chiến tuyến — phía smart money.
+      </p>
+    </div>
+
+    <!-- RULES 11-15 in compact form -->
+    <section class="rule" id="r11">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>11</div>
+        <div>
+          <h3 class="rule-title">Đám đông mua bán theo <em>cảm xúc</em> và kỳ vọng — không phân tích.</h3>
+          <div class="rule-quote">"Họ mua vì hàng xóm khuyên. Họ bán vì sợ. Họ chốt vì hy vọng. Không có phân tích nào trong đó."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <div class="framework">
+            <div class="title">Lý Do Thật Đám Đông Vào Lệnh</div>
+            <ul>
+              <li><span class="marker">×</span><span>"Twitter nói sắp x100"</span><span class="pct">FOMO</span></li>
+              <li><span class="marker">×</span><span>"Bạn em vừa ăn được mã này"</span><span class="pct">SOCIAL</span></li>
+              <li><span class="marker">×</span><span>"Em thấy rẻ quá"</span><span class="pct">ANCHOR</span></li>
+              <li><span class="marker">×</span><span>"Hy vọng về 100k để về bờ"</span><span class="pct">HOPE</span></li>
+            </ul>
+          </div>
+          <div class="callout">
+            <div class="label">Tự Vấn</div>
+            <p>Trước mỗi lệnh: "Tôi vào vì phân tích nói gì? Hay vì tôi đang cảm thấy gì?"</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>Chu Kỳ Cảm Xúc</span><span class="gold">EMOTION CYCLE</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="40" y1="50" x2="490" y2="50"/><line x1="40" y1="140" x2="490" y2="140"/><line x1="40" y1="230" x2="490" y2="230"/></g>
+            <path d="M 40 210 Q 100 200 130 180 Q 160 155 180 130 Q 210 95 240 65 Q 270 50 290 60 Q 310 80 320 115 Q 340 180 360 215 Q 390 240 420 235 Q 450 220 480 200" stroke="#4ade80" stroke-width="2.5" fill="none"/>
+            <circle cx="60" cy="205" r="3" fill="#6b6862"/>
+            <text x="60" y="225" fill="#6b6862" font-family="JetBrains Mono" font-size="7" text-anchor="middle">HOÀI NGHI</text>
+            <circle cx="180" cy="130" r="3" fill="#4ade80"/>
+            <text x="180" y="120" fill="#4ade80" font-family="JetBrains Mono" font-size="7" text-anchor="middle">LẠC QUAN</text>
+            <circle cx="290" cy="60" r="5" fill="#ef4444" class="pulse"/>
+            <text x="290" y="45" fill="#ef4444" font-family="JetBrains Mono" font-size="9" text-anchor="middle" font-weight="700">EUPHORIA</text>
+            <circle cx="360" cy="215" r="3" fill="#ef4444"/>
+            <text x="370" y="220" fill="#ef4444" font-family="JetBrains Mono" font-size="7">HOẢNG</text>
+            <line x1="60" y1="35" x2="60" y2="245" stroke="#d4a85a" stroke-width="0.5" stroke-dasharray="2 2"/>
+            <text x="60" y="32" fill="#d4a85a" font-family="JetBrains Mono" font-size="8" text-anchor="middle">MUA</text>
+            <line x1="290" y1="35" x2="290" y2="245" stroke="#d4a85a" stroke-width="0.5" stroke-dasharray="2 2"/>
+            <text x="290" y="32" fill="#d4a85a" font-family="JetBrains Mono" font-size="8" text-anchor="middle">BÁN</text>
+          </svg>
+          <div class="chart-caption">Smart money mua ở "hoài nghi", bán ở "euphoria". Retail làm ngược lại.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rule" id="r12">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>12</div>
+        <div>
+          <h3 class="rule-title">Thị trường có <em>ba trạng thái</em> — không phải hai. Đừng quên sideway.</h3>
+          <div class="rule-quote">"Mục tiêu sideway là chán nản — và đó là lúc đám đông chết nhiều nhất."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <p>Đa số trader F0 nghĩ thị trường chỉ <strong>lên hoặc xuống</strong>. Họ bỏ qua <span class="highlight">sideway</span> — pha dài nhất, mệt mỏi nhất, và là pha cá mập kiếm tiền nhiều nhất.</p>
+          <div class="framework">
+            <div class="title">Ba Regime &amp; Chiến Thuật</div>
+            <ul>
+              <li><span class="marker">↑</span><span>UPTREND — Hold dài, R:R cao</span><span class="pct">TẤN CÔNG</span></li>
+              <li><span class="marker">↔</span><span>SIDEWAY — Range, scalp, TP nhanh</span><span class="pct">LƯỚT</span></li>
+              <li><span class="marker">↓</span><span>DOWNTREND — Cash, short scalp</span><span class="pct">PHÒNG THỦ</span></li>
+            </ul>
+          </div>
+          <div class="callout">
+            <div class="label">Không Phải Hệ Thống Sai</div>
+            <p>Khi hệ thống "hết hiệu nghiệm", đa phần không phải sai — mà là dùng sai regime.</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>Three Regimes</span><span class="gold">RECOGNITION</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="40" y1="70" x2="490" y2="70"/><line x1="40" y1="140" x2="490" y2="140"/><line x1="40" y1="210" x2="490" y2="210"/></g>
+            <path d="M 40 220 L 60 210 L 80 190 L 100 170 L 120 145 L 140 125 L 160 105" stroke="#4ade80" stroke-width="2" fill="none"/>
+            <rect x="40" y="35" width="125" height="210" fill="#4ade80" opacity="0.04"/>
+            <text x="100" y="52" fill="#4ade80" font-family="JetBrains Mono" font-size="9" text-anchor="middle" font-weight="700">UPTREND</text>
+            <path d="M 160 105 L 180 120 L 200 100 L 220 125 L 240 105 L 260 123 L 280 103 L 300 120 L 320 110" stroke="#d4a85a" stroke-width="2" fill="none"/>
+            <rect x="165" y="35" width="160" height="210" fill="#d4a85a" opacity="0.04"/>
+            <text x="245" y="52" fill="#d4a85a" font-family="JetBrains Mono" font-size="9" text-anchor="middle" font-weight="700">SIDEWAY</text>
+            <line x1="165" y1="100" x2="325" y2="100" stroke="#d4a85a" stroke-width="0.5" stroke-dasharray="3 3"/>
+            <line x1="165" y1="125" x2="325" y2="125" stroke="#d4a85a" stroke-width="0.5" stroke-dasharray="3 3"/>
+            <path d="M 320 110 L 340 130 L 360 150 L 380 170 L 400 190 L 420 210 L 440 230 L 460 245" stroke="#ef4444" stroke-width="2" fill="none"/>
+            <rect x="325" y="35" width="160" height="210" fill="#ef4444" opacity="0.04"/>
+            <text x="405" y="52" fill="#ef4444" font-family="JetBrains Mono" font-size="9" text-anchor="middle" font-weight="700">DOWNTREND</text>
+            <text x="100" y="265" fill="#4ade80" font-family="JetBrains Mono" font-size="8" text-anchor="middle">HOLD · SIZE</text>
+            <text x="245" y="265" fill="#d4a85a" font-family="JetBrains Mono" font-size="8" text-anchor="middle">SCALP · TP</text>
+            <text x="405" y="265" fill="#ef4444" font-family="JetBrains Mono" font-size="8" text-anchor="middle">CASH · SHORT</text>
+          </svg>
+          <div class="chart-caption">Ba regime — ba chiến thuật ngược nhau. Trader pro nhận diện regime trước khi vào lệnh.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rule" id="r13">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>13</div>
+        <div>
+          <h3 class="rule-title">Tin tốt <em>không đảm bảo</em> giá tăng. Phải confirm bằng TA.</h3>
+          <div class="rule-quote">"Tin tức là hệ quả của xu hướng — không phải nguyên nhân. Nguyên nhân nằm ở dòng tiền."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <p>Bao nhiêu lần "tin tốt ra mà giá vẫn giảm"? ETF được duyệt nhưng giá đổ. Halving xảy ra nhưng không tăng ngay.</p>
+          <div class="framework">
+            <div class="title">Cơ Chế Tin Tức Của Cá Mập</div>
+            <ul>
+              <li><span class="marker">①</span><span>Tích lũy trong yên lặng</span><span class="pct">SILENT</span></li>
+              <li><span class="marker">②</span><span>Đẩy giá + truyền thông narrative</span><span class="pct">PUMP</span></li>
+              <li><span class="marker">③</span><span>Tin tốt đỉnh → fomo → xả</span><span class="pct">DUMP</span></li>
+            </ul>
+          </div>
+          <p>Tin ra + TA xác nhận = <strong>vào lệnh</strong>. Tin ra + TA mâu thuẫn = <em>không chơi</em>.</p>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>"Buy Rumor, Sell News"</span><span class="gold">NEWS TRAP</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="40" y1="50" x2="490" y2="50"/><line x1="40" y1="140" x2="490" y2="140"/><line x1="40" y1="230" x2="490" y2="230"/></g>
+            <path d="M 40 220 L 70 200 L 100 190 L 130 170 L 160 150 L 190 125 L 220 95 L 250 70 L 280 65" stroke="#4ade80" stroke-width="2" fill="none"/>
+            <path d="M 280 65 L 310 100 L 340 130 L 370 155 L 400 185 L 430 210 L 460 225" stroke="#ef4444" stroke-width="2" fill="none"/>
+            <line x1="280" y1="35" x2="280" y2="250" stroke="#d4a85a" stroke-width="1" stroke-dasharray="3 3"/>
+            <rect x="225" y="18" width="110" height="22" fill="#d4a85a"/>
+            <text x="280" y="33" fill="#0a0a0b" font-family="Inter Tight" font-size="10" font-weight="700" text-anchor="middle">📰 TIN TỐT RA</text>
+            <text x="140" y="250" fill="#4ade80" font-family="JetBrains Mono" font-size="9" text-anchor="middle">ACCUMULATION</text>
+            <text x="395" y="250" fill="#ef4444" font-family="JetBrains Mono" font-size="9" text-anchor="middle">DISTRIBUTION</text>
+          </svg>
+          <div class="chart-caption">Giá đã chạy trước tin. Khi tin ra — cá mập xả cho fomo.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rule" id="r14">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>14</div>
+        <div>
+          <h3 class="rule-title">Tin xấu <em>không đảm bảo</em> giá giảm. Đôi khi đó là đáy.</h3>
+          <div class="rule-quote">"Khi mọi người sợ hãi, hãy tham lam. Nhưng chỉ khi TA xác nhận đáy đã hình thành."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <p>Khi tin xấu liên tiếp nhưng giá <strong>không giảm thêm</strong> — đó là tín hiệu <em>người bán đã cạn</em>.</p>
+          <div class="framework">
+            <div class="title">Dấu Hiệu "Bad News, No Drop"</div>
+            <ul>
+              <li><span class="marker">▸</span><span>Tin xấu liên tiếp, giá đi ngang</span><span class="pct">EXHAUST</span></li>
+              <li><span class="marker">▸</span><span>Volume bán giảm dần</span><span class="pct">DRYING</span></li>
+              <li><span class="marker">▸</span><span>Đà giảm yếu khung 1D/1W</span><span class="pct">MOMENTUM</span></li>
+              <li><span class="marker">▸</span><span>Fear &amp; Greed &lt; 20</span><span class="pct">CAP</span></li>
+            </ul>
+          </div>
+          <div class="callout">
+            <div class="label">Quan Trọng</div>
+            <p>Chỉ áp dụng khi đang ở <strong>sóng hồi trong uptrend lớn</strong>. Bear market thật — tin xấu vẫn đẩy xuống.</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>Selling Exhaustion</span><span class="gold">CAPITULATION</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="40" y1="70" x2="490" y2="70"/><line x1="40" y1="140" x2="490" y2="140"/><line x1="40" y1="210" x2="490" y2="210"/></g>
+            <path d="M 40 90 L 80 160 L 120 125 L 160 175 L 200 150 L 240 195 L 280 175 L 320 205 L 360 190 L 400 205 L 440 200 L 480 175" stroke="#ef4444" stroke-width="2" fill="none"/>
+            <text x="80" y="175" fill="#ef4444" font-family="JetBrains Mono" font-size="11" text-anchor="middle">📰</text>
+            <text x="160" y="190" fill="#ef4444" font-family="JetBrains Mono" font-size="10" text-anchor="middle">📰</text>
+            <text x="240" y="210" fill="#ef4444" font-family="JetBrains Mono" font-size="9" text-anchor="middle">📰</text>
+            <text x="320" y="220" fill="#a8a39a" font-family="JetBrains Mono" font-size="8" text-anchor="middle">📰</text>
+            <text x="400" y="220" fill="#a8a39a" font-family="JetBrains Mono" font-size="7" text-anchor="middle">📰</text>
+            <line x1="40" y1="195" x2="490" y2="205" stroke="#4ade80" stroke-width="1" stroke-dasharray="4 3"/>
+            <text x="450" y="190" fill="#4ade80" font-family="JetBrains Mono" font-size="9">SUPPORT HOLD</text>
+            <text x="465" y="160" fill="#4ade80" font-family="JetBrains Mono" font-size="9" text-anchor="end" font-weight="700">REVERSAL</text>
+            <text x="265" y="50" fill="#d4a85a" font-family="Fraunces" font-size="13" font-style="italic" text-anchor="middle">"Tin xấu nhưng không sập"</text>
+          </svg>
+          <div class="chart-caption">Tin xấu mất tác dụng → người bán đã cạn → capitulation = đáy.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rule" id="r15">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>15</div>
+        <div>
+          <h3 class="rule-title">Xu hướng mạnh thường tuân thủ <em>cấu trúc 5 nhịp sóng.</em></h3>
+          <div class="rule-quote">"Đừng cố vẽ Elliott khi thị trường sideway. Sóng Elliott chỉ rõ ràng trong xu hướng có động lượng thực."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <div class="framework">
+            <div class="title">5 Nhịp Đẩy + 3 Nhịp Điều Chỉnh</div>
+            <ul>
+              <li><span class="marker">①</span><span>Sóng 1 — Đẩy đầu, ít người tin</span><span class="pct">DOUBT</span></li>
+              <li><span class="marker">②</span><span>Sóng 2 — Điều chỉnh, retail bán</span><span class="pct">FEAR</span></li>
+              <li><span class="marker">③</span><span>Sóng 3 — Mạnh nhất, fomo</span><span class="pct">RUSH</span></li>
+              <li><span class="marker">④</span><span>Sóng 4 — Điều chỉnh phức tạp</span><span class="pct">DOUBT</span></li>
+              <li><span class="marker">⑤</span><span>Sóng 5 — Đẩy cuối, euphoria</span><span class="pct">GREED</span></li>
+            </ul>
+          </div>
+          <p><strong>Cảnh báo:</strong> Elliott là công cụ — không phải tôn giáo. Trong sideway, đếm sóng là tự lừa mình.</p>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>Elliott Wave</span><span class="gold">5+3</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="40" y1="70" x2="490" y2="70"/><line x1="40" y1="140" x2="490" y2="140"/><line x1="40" y1="210" x2="490" y2="210"/></g>
+            <line x1="40" y1="210" x2="100" y2="155" stroke="#4ade80" stroke-width="2"/>
+            <line x1="100" y1="155" x2="140" y2="180" stroke="#ef4444" stroke-width="2"/>
+            <line x1="140" y1="180" x2="240" y2="60" stroke="#4ade80" stroke-width="2.5"/>
+            <line x1="240" y1="60" x2="290" y2="105" stroke="#ef4444" stroke-width="2"/>
+            <line x1="290" y1="105" x2="360" y2="45" stroke="#4ade80" stroke-width="2"/>
+            <line x1="360" y1="45" x2="400" y2="105" stroke="#ef4444" stroke-width="2"/>
+            <line x1="400" y1="105" x2="440" y2="80" stroke="#4ade80" stroke-width="1.5"/>
+            <line x1="440" y1="80" x2="480" y2="140" stroke="#ef4444" stroke-width="2"/>
+            <circle cx="100" cy="155" r="10" fill="#0a0a0b" stroke="#4ade80"/>
+            <text x="100" y="159" fill="#4ade80" font-family="Inter Tight" font-size="11" font-weight="700" text-anchor="middle">1</text>
+            <circle cx="140" cy="180" r="10" fill="#0a0a0b" stroke="#ef4444"/>
+            <text x="140" y="184" fill="#ef4444" font-family="Inter Tight" font-size="11" font-weight="700" text-anchor="middle">2</text>
+            <circle cx="240" cy="60" r="10" fill="#0a0a0b" stroke="#4ade80"/>
+            <text x="240" y="64" fill="#4ade80" font-family="Inter Tight" font-size="11" font-weight="700" text-anchor="middle">3</text>
+            <circle cx="290" cy="105" r="10" fill="#0a0a0b" stroke="#ef4444"/>
+            <text x="290" y="109" fill="#ef4444" font-family="Inter Tight" font-size="11" font-weight="700" text-anchor="middle">4</text>
+            <circle cx="360" cy="45" r="10" fill="#0a0a0b" stroke="#4ade80"/>
+            <text x="360" y="49" fill="#4ade80" font-family="Inter Tight" font-size="11" font-weight="700" text-anchor="middle">5</text>
+            <circle cx="400" cy="105" r="9" fill="#0a0a0b" stroke="#d4a85a"/>
+            <text x="400" y="109" fill="#d4a85a" font-family="Inter Tight" font-size="10" font-weight="700" text-anchor="middle">A</text>
+            <circle cx="440" cy="80" r="9" fill="#0a0a0b" stroke="#d4a85a"/>
+            <text x="440" y="84" fill="#d4a85a" font-family="Inter Tight" font-size="10" font-weight="700" text-anchor="middle">B</text>
+            <circle cx="480" cy="140" r="9" fill="#0a0a0b" stroke="#d4a85a"/>
+            <text x="480" y="144" fill="#d4a85a" font-family="Inter Tight" font-size="10" font-weight="700" text-anchor="middle">C</text>
+          </svg>
+          <div class="chart-caption">Sóng 3 thường mạnh nhất. Sóng 5 là euphoria đỉnh.</div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============ CHƯƠNG NỘI DUNG 4 ============ -->
+    <div class="chapter-divider">
+      <div class="num">— Phần IV</div>
+      <h2>Vào lệnh, <span class="accent">thoát lệnh</span><br>&amp; phân phối.</h2>
+      <p class="intro">
+        Năm quy luật cuối quyết định bạn có giữ được lợi nhuận hay không. Biết vào ở điểm an toàn,
+        biết đọc phân phối, biết đứng ngoài đám đông — đó là điểm phân biệt pro và nghiệp dư.
+      </p>
+    </div>
+
+    <section class="rule" id="r16">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>16</div>
+        <div>
+          <h3 class="rule-title">Uptrend thực sự cần <em>chiến dịch dài hạn</em> — không phải vài tuần.</h3>
+          <div class="rule-quote">"Một uptrend thực sự kéo dài hàng tháng đến hàng năm. Vài tuần rồi giảm — đó chỉ là sóng hồi."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <div class="framework">
+            <div class="title">Cấu Trúc Chiến Dịch Tăng Giá</div>
+            <ul>
+              <li><span class="marker">①</span><span>Tích lũy đáy</span><span class="pct">3-9 tháng</span></li>
+              <li><span class="marker">②</span><span>Truyền thông narrative</span><span class="pct">1-3 tháng</span></li>
+              <li><span class="marker">③</span><span>Markup chính</span><span class="pct">6-18 tháng</span></li>
+              <li><span class="marker">④</span><span>Phân phối đỉnh</span><span class="pct">2-6 tháng</span></li>
+            </ul>
+          </div>
+          <div class="callout">
+            <div class="label">Quan Trọng</div>
+            <p>Mục tiêu không phải dự báo đúng đỉnh. Mục tiêu là kiếm lợi nhuận. Lên đến đâu — ăn đến đấy.</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>Bull Cycle Anatomy</span><span class="gold">CAMPAIGN</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g16" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4ade80" stop-opacity="0.25"/><stop offset="100%" stop-color="#4ade80" stop-opacity="0"/></linearGradient></defs>
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="40" y1="70" x2="490" y2="70"/><line x1="40" y1="140" x2="490" y2="140"/><line x1="40" y1="210" x2="490" y2="210"/></g>
+            <rect x="40" y="35" width="100" height="220" fill="#a8a39a" opacity="0.03"/>
+            <rect x="140" y="35" width="80" height="220" fill="#d4a85a" opacity="0.04"/>
+            <rect x="220" y="35" width="180" height="220" fill="#4ade80" opacity="0.04"/>
+            <rect x="400" y="35" width="90" height="220" fill="#ef4444" opacity="0.04"/>
+            <path d="M 40 225 L 60 223 L 80 220 L 100 222 L 120 219 L 140 215 L 160 205 L 180 190 L 200 175 L 220 155 L 240 130 L 260 105 L 280 80 L 300 60 L 320 50 L 340 45 L 360 40 L 380 45 L 400 55 L 420 65 L 440 70 L 460 85 L 480 115 L 480 255 L 40 255 Z" fill="url(#g16)"/>
+            <path d="M 40 225 L 60 223 L 80 220 L 100 222 L 120 219 L 140 215 L 160 205 L 180 190 L 200 175 L 220 155 L 240 130 L 260 105 L 280 80 L 300 60 L 320 50 L 340 45 L 360 40 L 380 45 L 400 55 L 420 65 L 440 70 L 460 85 L 480 115" stroke="#4ade80" stroke-width="2" fill="none"/>
+            <text x="90" y="52" fill="#a8a39a" font-family="JetBrains Mono" font-size="8" text-anchor="middle" font-weight="700">① ACCUM</text>
+            <text x="180" y="52" fill="#d4a85a" font-family="JetBrains Mono" font-size="8" text-anchor="middle" font-weight="700">② PR</text>
+            <text x="310" y="52" fill="#4ade80" font-family="JetBrains Mono" font-size="8" text-anchor="middle" font-weight="700">③ MARKUP</text>
+            <text x="445" y="52" fill="#ef4444" font-family="JetBrains Mono" font-size="8" text-anchor="middle" font-weight="700">④ DIST</text>
+          </svg>
+          <div class="chart-caption">Bull cycle hoàn chỉnh kéo dài 1–3 năm. "Ăn nhanh chạy nhanh" thường bỏ lỡ phần lớn lợi nhuận.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rule" id="r17">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>17</div>
+        <div>
+          <h3 class="rule-title">Người tham mua đáy bán đỉnh. Người kinh nghiệm mua <em>điểm an toàn.</em></h3>
+          <div class="rule-quote">"Bạn không bao giờ biết đâu là đáy. Nhưng luôn có thể nhận diện một điểm vào an toàn."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <div class="framework">
+            <div class="title">Bộ 4 Điểm A-A'-B-B'</div>
+            <ul>
+              <li><span class="marker">A</span><span>Đáy nguyên thủy — chỉ thấy khi đã qua</span><span class="pct">RỦI RO</span></li>
+              <li><span class="marker">A'</span><span>Confirmed pullback — entry an toàn</span><span class="pct">★ VÀO</span></li>
+              <li><span class="marker">B</span><span>Đỉnh nguyên thủy — chỉ thấy khi đã qua</span><span class="pct">RỦI RO</span></li>
+              <li><span class="marker">B'</span><span>Confirmed reversal — exit an toàn</span><span class="pct">★ THOÁT</span></li>
+            </ul>
+          </div>
+          <div class="callout">
+            <div class="label">Kim Chỉ Nam</div>
+            <p>Mua A bán B là cờ bạc. Mua A' bán B' là đầu tư. Khác biệt nằm ở "xác nhận".</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>Entry &amp; Exit</span><span class="gold">A'B' METHOD</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="40" y1="70" x2="490" y2="70"/><line x1="40" y1="140" x2="490" y2="140"/><line x1="40" y1="210" x2="490" y2="210"/></g>
+            <path d="M 40 110 L 70 140 L 100 165 L 130 205 L 160 220 L 190 195 L 220 170 L 250 135 L 280 110 L 310 75 L 340 60 L 370 80 L 400 100 L 430 80 L 460 65 L 480 85" stroke="#4ade80" stroke-width="2" fill="none"/>
+            <circle cx="160" cy="220" r="6" fill="#ef4444"/>
+            <text x="160" y="240" fill="#ef4444" font-family="Inter Tight" font-size="12" font-weight="700" text-anchor="middle">A</text>
+            <text x="160" y="255" fill="#a8a39a" font-family="JetBrains Mono" font-size="8" text-anchor="middle">đáy thật</text>
+            <circle cx="250" cy="135" r="8" fill="#4ade80" class="pulse"/>
+            <text x="250" y="125" fill="#4ade80" font-family="Inter Tight" font-size="12" font-weight="700" text-anchor="middle">A'</text>
+            <text x="250" y="113" fill="#4ade80" font-family="JetBrains Mono" font-size="8" text-anchor="middle">★ MUA</text>
+            <circle cx="340" cy="60" r="6" fill="#ef4444"/>
+            <text x="340" y="48" fill="#ef4444" font-family="Inter Tight" font-size="12" font-weight="700" text-anchor="middle">B</text>
+            <text x="340" y="38" fill="#a8a39a" font-family="JetBrains Mono" font-size="8" text-anchor="middle">đỉnh thật</text>
+            <circle cx="400" cy="100" r="8" fill="#d4a85a" class="pulse"/>
+            <text x="400" y="118" fill="#d4a85a" font-family="Inter Tight" font-size="12" font-weight="700" text-anchor="middle">B'</text>
+            <text x="400" y="133" fill="#d4a85a" font-family="JetBrains Mono" font-size="8" text-anchor="middle">★ BÁN</text>
+            <rect x="250" y="135" width="150" height="3" fill="#4ade80"/>
+            <text x="325" y="155" fill="#4ade80" font-family="JetBrains Mono" font-size="9" text-anchor="middle" font-weight="700">VÙNG LỢI NHUẬN AN TOÀN</text>
+          </svg>
+          <div class="chart-caption">A' và B' bỏ qua 10-15% biên — đổi lấy sự chắc chắn của xu hướng đã xác nhận.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rule" id="r18">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>18</div>
+        <div>
+          <h3 class="rule-title">Đám đông tìm <em>lý do</em>. Trader pro tìm <em>nguyên nhân.</em></h3>
+          <div class="rule-quote">"Tin tức là hệ quả. Dòng tiền là nguyên nhân. Chạy theo tin là chạy theo bóng."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <p>Mỗi khi thị trường biến động, đám đông tìm <strong>lý do bề mặt</strong>: "Vì Fed", "Vì CZ với Sam", "Vì Elon tweet". Họ chạy theo hệ quả — luôn đến trễ.</p>
+          <div class="framework">
+            <div class="title">Nguyên Nhân vs Hệ Quả</div>
+            <ul>
+              <li><span class="marker">CAUSE</span><span>Dòng tiền (Whale flow, netflow)</span><span class="pct">GỐC</span></li>
+              <li><span class="marker">CAUSE</span><span>TA (mô hình đảo chiều)</span><span class="pct">GỐC</span></li>
+              <li><span class="marker">EFFECT</span><span>Tin tức (Fed, CPI, scandal)</span><span class="pct">BỀ MẶT</span></li>
+              <li><span class="marker">EFFECT</span><span>Phản ứng đám đông (panic)</span><span class="pct">BỀ MẶT</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>Cause Precedes Effect</span><span class="gold">SEQUENCE</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="40" y1="70" x2="490" y2="70"/><line x1="40" y1="140" x2="490" y2="140"/><line x1="40" y1="210" x2="490" y2="210"/></g>
+            <text x="40" y="45" fill="#d4a85a" font-family="JetBrains Mono" font-size="9">WHALE OUTFLOW →</text>
+            <rect x="100" y="32" width="7" height="14" fill="#ef4444"/>
+            <rect x="113" y="28" width="7" height="18" fill="#ef4444"/>
+            <rect x="126" y="25" width="7" height="21" fill="#ef4444"/>
+            <rect x="139" y="30" width="7" height="16" fill="#ef4444"/>
+            <path d="M 40 100 L 80 95 L 120 92 L 160 95 L 200 110 L 240 140 L 280 175 L 320 205 L 360 215 L 400 210 L 440 195 L 480 180" stroke="#f5f1e8" stroke-width="2" fill="none"/>
+            <line x1="140" y1="35" x2="140" y2="245" stroke="#d4a85a" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="140" y="265" fill="#d4a85a" font-family="JetBrains Mono" font-size="9" text-anchor="middle" font-weight="700">①</text>
+            <line x1="200" y1="35" x2="200" y2="245" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="200" y="265" fill="#a78bfa" font-family="JetBrains Mono" font-size="9" text-anchor="middle" font-weight="700">②</text>
+            <line x1="280" y1="35" x2="280" y2="245" stroke="#ef4444" stroke-width="1.5"/>
+            <text x="280" y="265" fill="#ef4444" font-family="JetBrains Mono" font-size="9" text-anchor="middle" font-weight="700">③</text>
+            <text x="140" y="138" fill="#d4a85a" font-family="JetBrains Mono" font-size="8" text-anchor="middle">Cá voi xả</text>
+            <text x="200" y="138" fill="#a78bfa" font-family="JetBrains Mono" font-size="8" text-anchor="middle">TA break</text>
+            <text x="320" y="135" fill="#ef4444" font-family="JetBrains Mono" font-size="9" font-weight="700">📰 TIN XẤU</text>
+          </svg>
+          <div class="chart-caption">Cá voi → TA → Tin xấu. Trader pro vào ở bước 1–2, không phải bước 3.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rule" id="r19">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>19</div>
+        <div>
+          <h3 class="rule-title">Tư duy ngược dòng <em>không phải</em> làm ngược với đám đông.</h3>
+          <div class="rule-quote">"Cứ đám đông mua là tôi bán — đó là tự sát. Đi ngược là chuẩn bị kịch bản, không phải hành động ngược."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <p>Quy luật bị hiểu sai nhất. Nếu đám đông đúng (trong xu hướng), làm ngược là chết.</p>
+          <div class="framework">
+            <div class="title">Quy Trình Ngược Dòng Đúng</div>
+            <ul>
+              <li><span class="marker">①</span><span>Nhận diện đám đông nghiêng quá mức</span><span class="pct">QUAN SÁT</span></li>
+              <li><span class="marker">②</span><span>Chuẩn bị kịch bản hướng ngược</span><span class="pct">PLAN</span></li>
+              <li><span class="marker">③</span><span>Theo dõi TA &amp; dòng tiền</span><span class="pct">MONITOR</span></li>
+              <li><span class="marker">④</span><span>Hành động khi có xác nhận</span><span class="pct">EXEC</span></li>
+            </ul>
+          </div>
+          <p>Đám đông chỉ sai ở <span class="highlight">bước ngoặt</span>. Việc của bạn là nhận diện bước ngoặt.</p>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>Đúng vs Sai</span><span class="gold">INFLECTION</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="40" y1="70" x2="490" y2="70"/><line x1="40" y1="140" x2="490" y2="140"/><line x1="40" y1="210" x2="490" y2="210"/></g>
+            <path d="M 40 200 L 80 175 L 120 145 L 160 115 L 200 90 L 240 75 L 270 70 L 290 75 L 320 95 L 360 130 L 400 170 L 440 200 L 480 220" stroke="#f5f1e8" stroke-width="2" fill="none"/>
+            <rect x="40" y="35" width="200" height="210" fill="#4ade80" opacity="0.04"/>
+            <text x="140" y="55" fill="#4ade80" font-family="JetBrains Mono" font-size="9" text-anchor="middle">CROWD ĐÚNG · UP</text>
+            <rect x="240" y="35" width="60" height="210" fill="#d4a85a" opacity="0.08"/>
+            <text x="270" y="55" fill="#d4a85a" font-family="JetBrains Mono" font-size="9" text-anchor="middle" font-weight="700">★ NGOẶT</text>
+            <rect x="300" y="35" width="190" height="210" fill="#ef4444" opacity="0.04"/>
+            <text x="395" y="55" fill="#ef4444" font-family="JetBrains Mono" font-size="9" text-anchor="middle">CROWD ĐÚNG · DOWN</text>
+            <circle cx="270" cy="70" r="8" fill="#d4a85a" class="pulse"/>
+            <text x="270" y="90" fill="#d4a85a" font-family="JetBrains Mono" font-size="9" text-anchor="middle" font-weight="700">CONTRARIAN</text>
+            <text x="265" y="270" fill="#a8a39a" font-family="Fraunces" font-size="10" font-style="italic" text-anchor="middle">Chỉ ở bước ngoặt mới đi ngược</text>
+          </svg>
+          <div class="chart-caption">90% thời gian — đi cùng đám đông. 10% — đi ngược ở bước ngoặt. Đó là contrarian đúng nghĩa.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rule" id="r20">
+      <div class="rule-head">
+        <div class="rule-num"><span class="label">QUY LUẬT</span>20</div>
+        <div>
+          <h3 class="rule-title">Mọi uptrend đều kết thúc bằng một <em>giai đoạn phân phối</em> ở đỉnh.</h3>
+          <div class="rule-quote">"Cá mập cần thời gian để bán mà không làm sập giá — đó là giai đoạn phân phối."</div>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div>
+          <div class="framework">
+            <div class="title">Dấu Hiệu Vùng Phân Phối</div>
+            <ul>
+              <li><span class="marker">▸</span><span>Giá đi ngang ở đỉnh, dao động mạnh</span><span class="pct">SIDEWAY</span></li>
+              <li><span class="marker">▸</span><span>BTC chững, alt nhảy múa</span><span class="pct">ROTATION</span></li>
+              <li><span class="marker">▸</span><span>Volume giảm trên nhịp tăng</span><span class="pct">WEAK</span></li>
+              <li><span class="marker">▸</span><span>Sentiment euphoria cực đại</span><span class="pct">PEAK</span></li>
+              <li><span class="marker">▸</span><span>Elliott — sóng 4 chuyển sóng 5</span><span class="pct">W5</span></li>
+            </ul>
+          </div>
+          <div class="callout">
+            <div class="label">Chiến Thuật Thoát</div>
+            <p>Bán bậc thang: 25% dấu hiệu đầu, 25% BTC.D đảo, 25% alt blow-off, 25% giữ làm long-term.</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-label"><span>Distribution Pattern</span><span class="gold">CYCLE TOP</span></div>
+          <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#2a2a30" stroke-width="0.5" stroke-dasharray="2 4"><line x1="40" y1="70" x2="490" y2="70"/><line x1="40" y1="140" x2="490" y2="140"/><line x1="40" y1="210" x2="490" y2="210"/></g>
+            <path d="M 40 220 L 80 195 L 120 160 L 160 115 L 200 80 L 230 70" stroke="#4ade80" stroke-width="2" fill="none"/>
+            <path d="M 230 70 L 250 85 L 270 65 L 290 90 L 310 60 L 330 85 L 350 75 L 370 100" stroke="#d4a85a" stroke-width="2" fill="none"/>
+            <path d="M 370 100 L 400 145 L 430 190 L 460 225 L 480 240" stroke="#ef4444" stroke-width="2.5" fill="none"/>
+            <rect x="225" y="55" width="150" height="50" fill="#d4a85a" opacity="0.1" stroke="#d4a85a" stroke-dasharray="4 3"/>
+            <text x="300" y="45" fill="#d4a85a" font-family="JetBrains Mono" font-size="9" text-anchor="middle" font-weight="700">DISTRIBUTION ZONE</text>
+            <circle cx="270" cy="65" r="5" fill="#d4a85a"/>
+            <text x="270" y="55" fill="#d4a85a" font-family="JetBrains Mono" font-size="8" text-anchor="middle">25%</text>
+            <circle cx="310" cy="60" r="5" fill="#d4a85a"/>
+            <text x="310" y="50" fill="#d4a85a" font-family="JetBrains Mono" font-size="8" text-anchor="middle">25%</text>
+            <circle cx="350" cy="75" r="5" fill="#d4a85a"/>
+            <text x="350" y="110" fill="#d4a85a" font-family="JetBrains Mono" font-size="8" text-anchor="middle">25%</text>
+            <circle cx="380" cy="105" r="5" fill="#ef4444"/>
+            <text x="380" y="120" fill="#ef4444" font-family="JetBrains Mono" font-size="8" text-anchor="middle">25%</text>
+            <text x="130" y="265" fill="#4ade80" font-family="JetBrains Mono" font-size="8" text-anchor="middle">MARKUP</text>
+            <text x="300" y="265" fill="#d4a85a" font-family="JetBrains Mono" font-size="8" text-anchor="middle">DISTRIBUTION</text>
+            <text x="430" y="265" fill="#ef4444" font-family="JetBrains Mono" font-size="8" text-anchor="middle">MARKDOWN</text>
+          </svg>
+          <div class="chart-caption">Phân phối luôn dài và đi ngang. Bán theo bậc thang — đừng cố đỉnh tuyệt đối.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEXT LESSON -->
+    <a href="#" style="text-decoration: none; color: inherit;">
+      <div class="next-lesson">
+        <div class="info">
+          <div class="label">⏵ Buổi học tiếp theo · Sắp ra mắt</div>
+          <div class="title">Buổi 48 — Cấu trúc thị trường theo chu kỳ</div>
+        </div>
+        <div class="arrow">→</div>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <p class="quote">
+    "Ở trong thị trường tài chính, không có cái điều gì mới cả. Những gì đã diễn ra trong quá khứ
+    sẽ tiếp tục diễn ra trong tương lai — bởi bản tính tự nhiên của con người không bao giờ thay đổi."
+  </p>
+  <div class="author">— Jesse Livermore</div>
+  <div class="credit">
+    trading.nguyenduchoa.com · Cẩm Nang Trader · © 2026
+  </div>
+</footer>
+
+<script>
+// Scroll progress
+const fill = document.getElementById('progressFill');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  fill.style.width = pct + '%';
+});
+
+// Sidebar toggle for mobile
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebar');
+menuToggle?.addEventListener('click', () => sidebar.classList.toggle('open'));
+
+// Nav chapter expand/collapse
+document.querySelectorAll('.chapter-head').forEach(head => {
+  head.addEventListener('click', (e) => {
+    head.parentElement.classList.toggle('open');
+  });
+});
+
+document.querySelectorAll('.topic-head').forEach(head => {
+  head.addEventListener('click', (e) => {
+    head.parentElement.classList.toggle('open');
+    e.stopPropagation();
+  });
+});
+
+// Active lesson tracking on scroll
+const lessons = document.querySelectorAll('.rule[id^="r"]');
+const tocLinks = document.querySelectorAll('.toc-item-mini');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      tocLinks.forEach(link => {
+        if (link.getAttribute('href') === '#' + id) {
+          link.style.color = 'var(--gold)';
+        } else {
+          link.style.color = '';
+        }
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+lessons.forEach(l => observer.observe(l));
+
+// Close mobile sidebar when clicking lesson
+document.querySelectorAll('.nav-lesson').forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 1024) sidebar.classList.remove('open');
+  });
+});
+
+// Search filter
+const search = document.getElementById('searchInput');
+search?.addEventListener('input', (e) => {
+  const q = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.nav-lesson').forEach(lesson => {
+    const text = lesson.textContent.toLowerCase();
+    lesson.style.display = (!q || text.includes(q)) ? '' : 'none';
+  });
+  // Open all chapters when searching
+  if (q) {
+    document.querySelectorAll('.nav-chapter, .nav-topic').forEach(el => el.classList.add('open'));
+  }
+});
+</script>
+
+</body>
+</html>
